@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+      </parent>
+    
+    <!-- Project Information -->
+    <groupId>com.cear</groupId>
+    <artifactId>showcase</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    
+    <name>CEAR Showcase</name>
+    <description>Showcase: Datastar + Tailwind v4 + Spring Boot</description>
+    
+    <!-- Properties -->
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <!-- Spring Boot -->
+        <spring-boot.version>3.5.3</spring-boot.version>
+        
+        <!-- JTE Template Engine -->
+        <jte.version>3.1.9</jte.version>
+        
+        <!-- Lombok -->
+        <lombok.version>1.18.30</lombok.version>
+        
+        <!-- Validation -->
+        <jakarta-validation.version>3.0.2</jakarta-validation.version>
+        
+        <!-- Frontend -->
+        <node.version>v20.10.0</node.version>
+        <npm.version>10.2.5</npm.version>
+    </properties>
+    
+    <!-- Dependencies -->
+    <dependencies>
+        <!-- Spring Boot Core -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        
+        <!-- JTE Template Engine -->
+        <dependency>
+            <groupId>gg.jte</groupId>
+            <artifactId>jte-spring-boot-starter-3</artifactId>
+            <version>${jte.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>gg.jte</groupId>
+            <artifactId>jte</artifactId>
+            <version>${jte.version}</version>
+        </dependency>
+        
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- Jakarta Validation -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>${jakarta-validation.version}</version>
+        </dependency>
+        
+        <!-- Development Tools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <!-- Build Configuration -->
+    <build>
+        <plugins>
+            <!-- Spring Boot Plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            
+            <!-- JTE Maven Plugin -->
+            <plugin>
+                <groupId>gg.jte</groupId>
+                <artifactId>jte-maven-plugin</artifactId>
+                <version>${jte.version}</version>
+                <configuration>
+                    <sourceDirectory>src/main/resources/jte</sourceDirectory>
+                    <targetDirectory>target/generated-sources/jte</targetDirectory>
+                    <contentType>Html</contentType>
+                    <trimControlStructures>true</trimControlStructures>
+                    <!-- Desabilitar precompilação em desenvolvimento -->
+                    <compileArgs>
+                        <arg>--enable-preview</arg>
+                    </compileArgs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>precompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Frontend Maven Plugin -->
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.15.0</version>
+                <configuration>
+                    <nodeVersion>${node.version}</nodeVersion>
+                    <npmVersion>${npm.version}</npmVersion>
+                </configuration>
+                <executions>
+                    <!-- Install Node.js and npm -->
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+                    
+                    <!-- Install npm dependencies -->
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    
+                    <!-- Build CSS for production -->
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <arguments>run css:prod</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <!-- Profiles -->
+    <profiles>
+        <!-- Development Profile -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <skip.jte.precompile>true</skip.jte.precompile>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>npm run dev</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <arguments>run css:dev</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Desabilitar JTE precompile em desenvolvimento -->
+                    <plugin>
+                        <groupId>gg.jte</groupId>
+                        <artifactId>jte-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- Production Profile -->
+        <profile>
+            <id>prod</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>gg.jte</groupId>
+                        <artifactId>jte-maven-plugin</artifactId>
+                        <configuration>
+                            <sourceDirectory>src/main/resources/jte</sourceDirectory>
+                            <targetDirectory>target/generated-sources/jte</targetDirectory>
+                            <contentType>Html</contentType>
+                            <trimControlStructures>true</trimControlStructures>
+                            <binaryStaticContent>true</binaryStaticContent>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project> 

@@ -1,0 +1,56 @@
+# Configuração base
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/javascript
+
+spring:
+  application:
+    name: cear-showcase
+  
+  # JTE Configuration
+  jte:
+    development-mode: true
+    use-precompiled-templates: false
+    template-location: classpath:jte/
+
+# JTE Configuration (namespace correto)
+gg:
+  jte:
+    development-mode: true
+  
+  # Web Configuration
+  web:
+    resources:
+      static-locations: classpath:/static/
+      cache:
+        period: PT30M # 30 minutos para desenvolvimento
+  
+  # DevTools
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/resources/jte,src/main/resources/static
+    livereload:
+      enabled: true
+      port: 35729
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Logging
+logging:
+  level:
+    com.cear.showcase: DEBUG
+    org.springframework.web: INFO
+    gg.jte: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" 

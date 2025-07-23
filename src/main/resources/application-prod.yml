@@ -1,0 +1,23 @@
+# Configuração de produção
+spring:
+  jte:
+    development-mode: false
+    use-precompiled-templates: true
+
+# JTE Configuration (namespace correto)
+gg:
+  jte:
+    development-mode: false
+    use-precompiled-templates: true
+  
+  web:
+    resources:
+      cache:
+        period: P30D # 30 dias para produção
+
+# Logging otimizado
+logging:
+  level:
+    com.cear.showcase: INFO
+    org.springframework.web: WARN
+    gg.jte: WARN 

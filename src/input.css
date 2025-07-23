@@ -1,0 +1,512 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+===========================
+CEAR Showcase Custom Styles
+===========================
+Paleta: Laranja #f97316 (primary), complementares e neutros
+*/
+
+@layer base {
+  /* Variáveis CSS customizadas para a paleta CEAR */
+  :root {
+    /* Cores principais CEAR */
+    --cear-orange: #f97316;
+    --cear-orange-light: #fed7aa;
+    --cear-orange-lighter: #ffedd5;
+    --cear-orange-dark: #ea580c;
+    --cear-orange-darker: #c2410c;
+    
+    /* Cores complementares */
+    --cear-blue: #2563eb;
+    --cear-blue-light: #dbeafe;
+    --cear-green: #16a34a;
+    --cear-green-light: #dcfce7;
+    --cear-red: #dc2626;
+    --cear-red-light: #fecaca;
+    
+    /* Neutros CEAR */
+    --cear-gray-50: #f9fafb;
+    --cear-gray-100: #f3f4f6;
+    --cear-gray-200: #e5e7eb;
+    --cear-gray-300: #d1d5db;
+    --cear-gray-400: #9ca3af;
+    --cear-gray-500: #6b7280;
+    --cear-gray-600: #4b5563;
+    --cear-gray-700: #374151;
+    --cear-gray-800: #1f2937;
+    --cear-gray-900: #111827;
+    
+    /* Sombras personalizadas */
+    --cear-shadow-orange: 0 4px 6px -1px rgba(249, 115, 22, 0.1), 0 2px 4px -1px rgba(249, 115, 22, 0.06);
+    --cear-shadow-orange-lg: 0 10px 15px -3px rgba(249, 115, 22, 0.1), 0 4px 6px -2px rgba(249, 115, 22, 0.05);
+    --cear-shadow-orange-xl: 0 20px 25px -5px rgba(249, 115, 22, 0.1), 0 10px 10px -5px rgba(249, 115, 22, 0.04);
+    
+    /* Gradientes */
+    --cear-gradient-primary: linear-gradient(135deg, var(--cear-orange) 0%, var(--cear-orange-dark) 100%);
+    --cear-gradient-light: linear-gradient(135deg, var(--cear-orange-lighter) 0%, var(--cear-orange-light) 100%);
+    --cear-gradient-text: linear-gradient(135deg, var(--cear-orange) 0%, var(--cear-orange-dark) 50%, var(--cear-blue) 100%);
+  }
+  
+  /* Scroll suave global */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Body com fonte otimizada */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--cear-gray-800);
+  }
+  
+  /* Remove outline padrão e adiciona focus ring personalizado */
+  *:focus {
+    outline: none;
+  }
+  
+  *:focus-visible {
+    outline: 2px solid var(--cear-orange);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* ===========================
+     CARDS E CONTAINERS
+     =========================== */
+  
+  .showcase-card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-100 p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    box-shadow: var(--cear-shadow-orange);
+  }
+  
+  .showcase-card-highlight {
+    @apply showcase-card border-orange-200 bg-gradient-to-br from-orange-50 to-white;
+  }
+  
+  .showcase-card-interactive {
+    @apply showcase-card hover:border-orange-300 hover:bg-orange-50/50 cursor-pointer;
+  }
+  
+  /* ===========================
+     BOTÕES
+     =========================== */
+  
+  .showcase-button {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .showcase-button-primary {
+    @apply showcase-button bg-orange-500 text-white hover:bg-orange-600 active:bg-orange-700 shadow-md hover:shadow-lg;
+    background: var(--cear-gradient-primary);
+    box-shadow: var(--cear-shadow-orange);
+  }
+  
+  .showcase-button-secondary {
+    @apply showcase-button bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300 border border-gray-300;
+  }
+  
+  .showcase-button-outline {
+    @apply showcase-button bg-transparent text-orange-600 border-2 border-orange-500 hover:bg-orange-50 active:bg-orange-100;
+  }
+  
+  .showcase-button-ghost {
+    @apply showcase-button bg-transparent text-orange-600 hover:bg-orange-50 active:bg-orange-100;
+  }
+  
+  .showcase-button-danger {
+    @apply showcase-button bg-red-500 text-white hover:bg-red-600 active:bg-red-700 shadow-md;
+  }
+  
+  .showcase-button-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+  
+  .showcase-button-lg {
+    @apply px-6 py-3 text-lg;
+  }
+  
+  /* ===========================
+     INPUTS E FORMULÁRIOS
+     =========================== */
+  
+  .showcase-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors duration-200;
+  }
+  
+  .showcase-input-error {
+    @apply showcase-input border-red-300 focus:border-red-500 focus:ring-red-500 bg-red-50;
+  }
+  
+  .showcase-input-success {
+    @apply showcase-input border-green-300 focus:border-green-500 focus:ring-green-500 bg-green-50;
+  }
+  
+  .showcase-textarea {
+    @apply showcase-input resize-vertical min-h-[100px];
+  }
+  
+  .showcase-select {
+    @apply showcase-input pr-10 bg-white cursor-pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+  }
+  
+  .showcase-checkbox {
+    @apply w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 rounded focus:ring-orange-500 focus:ring-2;
+  }
+  
+  .showcase-radio {
+    @apply w-4 h-4 text-orange-600 bg-gray-100 border-gray-300 focus:ring-orange-500 focus:ring-2;
+  }
+  
+  /* ===========================
+     BADGES E LABELS
+     =========================== */
+  
+  .showcase-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .showcase-badge-primary {
+    @apply showcase-badge bg-orange-100 text-orange-800;
+  }
+  
+  .showcase-badge-secondary {
+    @apply showcase-badge bg-gray-100 text-gray-800;
+  }
+  
+  .showcase-badge-success {
+    @apply showcase-badge bg-green-100 text-green-800;
+  }
+  
+  .showcase-badge-warning {
+    @apply showcase-badge bg-yellow-100 text-yellow-800;
+  }
+  
+  .showcase-badge-danger {
+    @apply showcase-badge bg-red-100 text-red-800;
+  }
+  
+  .showcase-badge-info {
+    @apply showcase-badge bg-blue-100 text-blue-800;
+  }
+  
+  /* ===========================
+     ALERTAS E NOTIFICAÇÕES
+     =========================== */
+  
+  .showcase-alert {
+    @apply p-4 rounded-lg border flex items-start space-x-3;
+  }
+  
+  .showcase-alert-success {
+    @apply showcase-alert bg-green-50 border-green-200 text-green-800;
+  }
+  
+  .showcase-alert-warning {
+    @apply showcase-alert bg-yellow-50 border-yellow-200 text-yellow-800;
+  }
+  
+  .showcase-alert-error {
+    @apply showcase-alert bg-red-50 border-red-200 text-red-800;
+  }
+  
+  .showcase-alert-info {
+    @apply showcase-alert bg-blue-50 border-blue-200 text-blue-800;
+  }
+  
+  /* ===========================
+     NAVEGAÇÃO
+     =========================== */
+  
+  .showcase-nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 hover:bg-orange-50 hover:text-orange-600;
+  }
+  
+  .showcase-nav-link-active {
+    @apply showcase-nav-link bg-orange-100 text-orange-700;
+  }
+  
+  /* ===========================
+     LOADING E ESTADOS
+     =========================== */
+  
+  .showcase-loading {
+    @apply animate-pulse;
+  }
+  
+  .showcase-skeleton {
+    @apply bg-gray-200 rounded animate-pulse;
+  }
+  
+  .showcase-spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-orange-500;
+  }
+  
+  /* ===========================
+     DATASTAR ESPECÍFICOS
+     =========================== */
+  
+  .datastar-loading {
+    @apply opacity-50 pointer-events-none transition-opacity duration-200;
+  }
+  
+  .datastar-error {
+    @apply border-red-300 bg-red-50;
+  }
+  
+  .datastar-success {
+    @apply border-green-300 bg-green-50;
+  }
+}
+
+@layer utilities {
+  /* ===========================
+     GRADIENTES PERSONALIZADOS
+     =========================== */
+  
+  .text-gradient-cear {
+    background: var(--cear-gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-cear {
+    background: var(--cear-gradient-primary);
+  }
+  
+  .bg-gradient-cear-light {
+    background: var(--cear-gradient-light);
+  }
+  
+  .bg-gradient-radial-cear {
+    background: radial-gradient(circle at center, var(--cear-orange-light) 0%, var(--cear-orange) 100%);
+  }
+  
+  /* ===========================
+     SOMBRAS PERSONALIZADAS
+     =========================== */
+  
+  .shadow-cear {
+    box-shadow: var(--cear-shadow-orange);
+  }
+  
+  .shadow-cear-lg {
+    box-shadow: var(--cear-shadow-orange-lg);
+  }
+  
+  .shadow-cear-xl {
+    box-shadow: var(--cear-shadow-orange-xl);
+  }
+  
+  .shadow-inner-cear {
+    box-shadow: inset 0 2px 4px 0 rgba(249, 115, 22, 0.06);
+  }
+  
+  /* ===========================
+     ANIMAÇÕES PERSONALIZADAS
+     =========================== */
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown 0.4s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+  
+  /* ===========================
+     HOVER EFFECTS AVANÇADOS
+     =========================== */
+  
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-2;
+  }
+  
+  .hover-glow {
+    @apply transition-shadow duration-300;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+  }
+  
+  .hover-tilt {
+    @apply transition-transform duration-300 hover:rotate-1;
+  }
+  
+  /* ===========================
+     UTILIDADES DE TEXTO
+     =========================== */
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* ===========================
+     LAYOUT UTILITIES
+     =========================== */
+  
+  .container-showcase {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .grid-showcase {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+  
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+  
+  /* ===========================
+     RESPONSIVIDADE
+     =========================== */
+  
+  .responsive-text {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
+  }
+  
+  .responsive-spacing {
+    @apply p-4 sm:p-6 md:p-8;
+  }
+  
+  /* ===========================
+     DEBUGGING (apenas dev)
+     =========================== */
+  
+  .debug-border {
+    @apply border-2 border-red-500;
+  }
+  
+  .debug-bg {
+    @apply bg-red-100;
+  }
+}
+
+/* ===========================
+   KEYFRAMES PARA ANIMAÇÕES
+   =========================== */
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===========================
+   MEDIA QUERIES PERSONALIZADAS
+   =========================== */
+
+@media (max-width: 640px) {
+  .showcase-card {
+    @apply p-4;
+  }
+  
+  .showcase-button-lg {
+    @apply px-4 py-2 text-base;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================
+   DARK MODE (preparação futura)
+   =========================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cear-gray-50: #1f2937;
+    --cear-gray-100: #374151;
+    --cear-gray-200: #4b5563;
+    --cear-gray-800: #f9fafb;
+    --cear-gray-900: #ffffff;
+  }
+} 
