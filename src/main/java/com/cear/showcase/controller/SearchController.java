@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,7 +21,6 @@ import com.cear.showcase.service.SearchService;
  * Demonstra busca em tempo real com debounce e fragmentos HTML
  */
 @Controller
-@RequestMapping("/search")
 public class SearchController {
 
     @Autowired
@@ -31,7 +29,7 @@ public class SearchController {
     /**
      * Página principal de busca
      */
-    @GetMapping
+    @GetMapping("/search")
     public String searchPage(Model model) {
         // Estatísticas iniciais para mostrar na página
         model.addAttribute("totalPeople", 100); // Valor mock
@@ -47,7 +45,7 @@ public class SearchController {
      * Endpoint para busca em tempo real - retorna fragmento HTML
      * Usado pelo Datastar com data-on-input e debounce
      */
-    @GetMapping("/results")
+    @GetMapping("/search/results")
     public String searchResults(
             @RequestParam(value = "q", defaultValue = "") String query,
             @RequestParam(value = "department", required = false) String department,
@@ -86,7 +84,7 @@ public class SearchController {
      * Endpoint para sugestões de busca - retorna JSON
      * Usado para autocomplete
      */
-    @GetMapping("/suggestions")
+    @GetMapping("/search/suggestions")
     @ResponseBody
     public ResponseEntity<List<String>> searchSuggestions(
             @RequestParam(value = "q", defaultValue = "") String query) {
@@ -103,7 +101,7 @@ public class SearchController {
      * Endpoint para filtros disponíveis - retorna JSON
      * Usado para popular dropdowns dinamicamente
      */
-    @GetMapping("/filters")
+    @GetMapping("/search/filters")
     @ResponseBody
     public ResponseEntity<Map<String, List<String>>> getFilters() {
         Map<String, List<String>> filters = Map.of(
@@ -117,7 +115,7 @@ public class SearchController {
      * Endpoint para detalhes de uma pessoa específica
      * Pode ser usado em modals ou páginas de detalhe
      */
-    @GetMapping("/person/{id}")
+    @GetMapping("/search/person/{id}")
     public String personDetails(@PathVariable Long id, Model model) {
         var person = searchService.findById(id);
         if (person != null) {
@@ -133,7 +131,7 @@ public class SearchController {
      * Endpoint para busca avançada com múltiplos filtros
      * Demonstra capacidades mais complexas do Datastar
      */
-    @PostMapping("/advanced")
+    @PostMapping("/search/advanced")
     public String advancedSearch(
             @RequestParam Map<String, String> params,
             Model model) {
@@ -158,7 +156,7 @@ public class SearchController {
     /**
      * Endpoint para busca rápida - versão otimizada
      */
-    @GetMapping("/quick")
+    @GetMapping("/search/quick")
     @ResponseBody
     public ResponseEntity<List<SearchResult>> quickSearch(
             @RequestParam(value = "q", defaultValue = "") String query) {

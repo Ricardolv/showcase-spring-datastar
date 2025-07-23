@@ -9,23 +9,12 @@ spring:
   application:
     name: cear-showcase
   
-  # JTE Configuration
-  jte:
-    development-mode: true
-    use-precompiled-templates: false
-    template-location: classpath:jte/
-
-# JTE Configuration (namespace correto)
-gg:
-  jte:
-    development-mode: true
-  
   # Web Configuration
   web:
     resources:
       static-locations: classpath:/static/
       cache:
-        period: PT30M # 30 minutos para desenvolvimento
+        period: PT0S # Sem cache em desenvolvimento
   
   # DevTools
   devtools:
@@ -36,21 +25,25 @@ gg:
       enabled: true
       port: 35729
 
-# Actuator
+# JTE Configuration (correto para Spring Boot 3.x)
+gg:
+  jte:
+    development-mode: true
+    template-location: classpath:/jte/
+
+# Logging para debug
+logging:
+  level:
+    gg.jte: DEBUG
+    com.cear.showcase: DEBUG
+    org.springframework.web.servlet.view: DEBUG
+
+# Actuator para debugging
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics
+        include: health,info
   endpoint:
     health:
-      show-details: always
-
-# Logging
-logging:
-  level:
-    com.cear.showcase: DEBUG
-    org.springframework.web: INFO
-    gg.jte: INFO
-  pattern:
-    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" 
+      show-details: always 
