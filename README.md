@@ -1,6 +1,6 @@
-# 🚀 CEAR Showcase - Datastar + Tailwind v4 + Spring Boot
+# 🚀  Showcase - Datastar + Tailwind v4 + Spring Boot
 
-> **Projeto de demonstração educativo** que integra Datastar (framework hipermídia reativo), Tailwind CSS v4 com paleta CEAR personalizada, e Spring Boot para criar aplicações web modernas e interativas.
+> **Projeto de demonstração educativo** que integra Datastar (framework hipermídia reativo), Tailwind CSS v4 com paleta  personalizada, e Spring Boot para criar aplicações web modernas e interativas.
 
 ## 🎯 Objetivo
 
@@ -10,7 +10,7 @@ Demonstrar a **integração perfeita** entre tecnologias modernas de desenvolvim
 
 ### Frontend
 - **[Datastar](https://data-star.dev/)** - Framework hipermídia para interatividade reativa
-- **[Tailwind CSS v4](https://tailwindcss.com/)** - Framework CSS com paleta CEAR personalizada
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Framework CSS com paleta  personalizada
 - **[JTE Templates](https://jte.gg/)** - Engine de templates type-safe para Java
 
 ### Backend
@@ -43,8 +43,8 @@ Demonstrar a **integração perfeita** entre tecnologias modernas de desenvolvim
 - **Feedback visual** com estados de erro/sucesso
 - **Auto-complete** com sugestões contextuais
 
-### 🎨 Galeria de Componentes CEAR
-- **Paleta oficial CEAR** - Laranja (#f97316) como cor primária
+### 🎨 Galeria de Componentes 
+- **Paleta oficial ** - Laranja (#f97316) como cor primária
 - **Componentes reutilizáveis** - Cards, botões, badges, alertas
 - **Design responsivo** com foco em acessibilidade
 - **Animações suaves** e estados hover
@@ -100,7 +100,7 @@ java -jar target/showcase-1.0.0.jar
 
 ```
 showcase-datastar-spring/
-├── 📂 src/main/java/com/cear/showcase/
+├── 📂 src/main/java/com//showcase/
 │   ├── ShowcaseApplication.java           # 🚀 Main Spring Boot
 │   ├── 📂 controller/
 │   │   ├── HomeController.java            # 🏠 Página inicial
@@ -143,7 +143,7 @@ showcase-datastar-spring/
 └── pom.xml                               # 📦 Dependencies Maven
 ```
 
-## 🎨 Paleta de Cores CEAR
+## 🎨 Paleta de Cores 
 
 ### Cores Principais
 | Cor | Hex | Uso | Preview |
@@ -166,13 +166,13 @@ showcase-datastar-spring/
   @apply bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg;
 }
 
-/* Card CEAR */
-.card-cear {
+/* Card  */
+.card- {
   @apply bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md;
 }
 
 /* Input com foco laranja */
-.input-cear {
+.input- {
   @apply border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500;
 }
 ```
@@ -266,7 +266,7 @@ npm outdated
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"
 
 # Logs detalhados
-mvn spring-boot:run -Dspring.profiles.active=dev -Dlogging.level.com.cear.showcase=DEBUG
+mvn spring-boot:run -Dspring.profiles.active=dev -Dlogging.level.com..showcase=DEBUG
 ```
 
 ### Produção
@@ -292,7 +292,7 @@ mvn compile
 - Siga as **[ADRs](ADRS/)** para decisões arquiteturais
 - Use **Java 21 features** quando apropriado
 - Mantenha **testes atualizados** para novas funcionalidades
-- Siga a **paleta CEAR** para novos componentes
+- Siga a **paleta ** para novos componentes
 
 ### 3. Submissão
 - Crie **branch feature** a partir de `main`
@@ -329,16 +329,6 @@ mvn compile
 
 ### Frontend Moderno
 - ✅ **CSS utilitário** com Tailwind v4
-- ✅ **Design system** consistente com paleta CEAR
+- ✅ **Design system** consistente com paleta 
 - ✅ **Responsividade** mobile-first
 - ✅ **Acessibilidade** com ARIA labels
-
-## 📄 Licença
-
-Este projeto é uma **demonstração educativa** desenvolvida pelo **CEAR - UFPB** para fins de aprendizado e showcase de tecnologias modernas.
-
----
-
-**🚀 Desenvolvido com ❤️ pelo CEAR - UFPB**
-
-> *Demonstrando que aplicações modernas podem ser simples, elegantes e poderosas!* 
