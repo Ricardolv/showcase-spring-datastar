@@ -36,6 +36,6 @@ public class HomeController {
     @GetMapping("/health")
     @ResponseBody
     public String health() {
-        return "OK - CEAR Showcase running";
+        return "OK - Showcase running";
     }
 } 

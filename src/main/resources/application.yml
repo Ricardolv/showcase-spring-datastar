@@ -25,11 +25,12 @@ spring:
       enabled: true
       port: 35729
 
-# JTE Configuration (correto para Spring Boot 3.x)
+# JTE Configuration (Spring Boot Starter)
 gg:
   jte:
     development-mode: true
-    template-location: classpath:/jte/
+    template-location: src/main/resources/jte
+    template-suffix: .jte
 
 # Logging para debug
 logging:

@@ -19,7 +19,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     
-    <name>CEAR Showcase</name>
+    <name>Showcase Datastar Spring</name>
     <description>Showcase: Datastar + Tailwind v4 + Spring Boot</description>
     
     <!-- Properties -->
@@ -32,7 +32,7 @@
         <spring-boot.version>3.5.3</spring-boot.version>
         
         <!-- JTE Template Engine -->
-        <jte.version>3.1.9</jte.version>
+        <jte.version>3.2.1</jte.version>
         
         <!-- Lombok -->
         <lombok.version>1.18.30</lombok.version>
@@ -69,7 +69,6 @@
             <artifactId>jte-spring-boot-starter-3</artifactId>
             <version>${jte.version}</version>
         </dependency>
-        
         <dependency>
             <groupId>gg.jte</groupId>
             <artifactId>jte</artifactId>
@@ -159,10 +158,7 @@
                     <targetDirectory>target/generated-sources/jte</targetDirectory>
                     <contentType>Html</contentType>
                     <trimControlStructures>true</trimControlStructures>
-                    <!-- Desabilitar precompilação em desenvolvimento -->
-                    <compileArgs>
-                        <arg>--enable-preview</arg>
-                    </compileArgs>
+                    <binaryStaticContent>true</binaryStaticContent>
                 </configuration>
                 <executions>
                     <execution>
@@ -252,9 +248,18 @@
                     <plugin>
                         <groupId>gg.jte</groupId>
                         <artifactId>jte-maven-plugin</artifactId>
+                        <version>${jte.version}</version>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/resources/jte</sourceDirectory>
+                            <targetDirectory>${project.build.directory}/jte-classes</targetDirectory>
+                            <contentType>Html</contentType>
+                        </configuration>
                         <executions>
                             <execution>
-                                <phase>none</phase>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>precompile</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
